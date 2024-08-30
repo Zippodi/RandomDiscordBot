@@ -97,6 +97,10 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
 
     // Subscribe the connection to the player
     connection.subscribe(player);
+
+    player.on(AudioPlayerStatus.Idle, () => {
+      connection.destroy(); // Leave the voice channel
+    });
   }
 });
 
